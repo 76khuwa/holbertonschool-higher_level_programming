@@ -1,11 +1,14 @@
 #!/usr/bin/python3
 """
-changes the name of a State object
-from the database hbtn_0e_6_usa"""
+creates the State “California” with the City “San Francisco”
+from the database hbtn_0e_100_usa:
+(100-relationship_states_cities.py)
+"""
 import sys
 from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
-from model_state import Base, State
+from sqlalchemy.orm import sessionmaker
+from relationship_state import Base, State
+from relationship_city import City
 
 
 if __name__ == "__main__":
@@ -18,9 +21,11 @@ if __name__ == "__main__":
                                             ),
                             pool_pre_ping=True
                                 )
-    session = Session(engine)
-    re = session.query(State).filter_by(id=2).first()
-    re.name = "New Mexico"
-    re = session.add(re)
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    new_State = State(name="California")
+    new_State.cities = [City(name="San Francisco")]
+    re = session.add(new_State)
     session.commit()
     session.close()
