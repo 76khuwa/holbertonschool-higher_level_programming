@@ -1,43 +1,60 @@
-# 0x14. Javascript - Web scraping
+# Javascript - Web scraping
 
-## Description
-What you should learn from this project:
+# Learning Objectives
 
-* Why Javascript programming is amazing (don’t forget to tweet today, with the hashtag #javascriptisamazing :))
 * How to manipulate JSON data
-* How to use request and fetch API
-* How to read and write a file using fs module
+* How to use `request` and fetch API
+* How to read and write a file using `fs` module
 
----
+# Tasks
 
-### [0. Readme](./0-readme.js)
-* Write a script that reads and prints the content of a file.
+## Readme
 
+Write a script that reads and prints the content of a file.
 
-### [1. Write me](./1-writeme.js)
-* Write a script that writes a string to a file.
+* The first argument is the file path
+* The content of the file must be read in `utf-8`
+* If an error occurred during the reading, print the error object
 
+**Solution:** [0-readme.js](https://github.com/monoprosito/holbertonschool-higher_level_programming/blob/master/0x14-javascript-web_scraping/0-readme.js)
 
-### [2. Status code](./2-statuscode.js)
-* Write a script that display the status code of a GET request.
+```
+$ amonkeyprogrammer@ubuntu:~/0x14$ ./0-readme.js cisfun
+C is super fun!
+$ amonkeyprogrammer@ubuntu:~/0x14$ cat cisfun
+C is super fun!
+$ amonkeyprogrammer@ubuntu:~/0x14$ ./0-readme.js doesntexist
+{ Error: ENOENT: no such file or directory, open 'doesntexist'
+    at Error (native)
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'doesntexist' }
+$ amonkeyprogrammer@ubuntu:~/0x14$
+```
 
+## Write me
 
-### [3. Star wars movie title](./3-starwars_title.js)
-* Write a script that prints the title of a Star Wars movie where the episode number matches a given integer.
+Write a script that writes a string to a file.
 
+* The first argument is the file path
+* The second argument is the string to write
+* The content of the file must be written in `utf-8`
+* If an error occurred during while writing, print the error object
 
-### [4. Star wars Wedge Antilles](./4-starwars_count.js)
-* Write a script that prints the number of movies where the character “Wedge Antilles” is present.
+**Solution:** [1-writeme.js](https://github.com/monoprosito/holbertonschool-higher_level_programming/blob/master/0x14-javascript-web_scraping/1-writeme.js)
 
+```
+$ amonkeyprogrammer@ubuntu:~/0x14$ ./1-writeme.js my_file.txt "Python is cool"
+$ amonkeyprogrammer@ubuntu:~/0x14$ cat my_file.txt ; echo ""
+Python is cool
+$ amonkeyprogrammer@ubuntu:~/0x14$
+```
 
-### [5. Loripsum](./5-request_store.js)
-* Write a script that gets the contents of a webpage and stores it in a file.
+## Status code
 
+Write a script that display the status code of a `GET` request.
 
-### [6. How many completed?](./6-completed_tasks.js)
-* Write a script that computes the number of tasks completed by user id.
-
----
-
-## Author
-* **Derrick Gee** - [kai-dg](https://github.com/kai-dg)
+* The first argument is the URL to request (`GET`)
+* The status code must be printed like this: `code: <status code>`
+* You must use the module `requests`
